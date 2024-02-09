@@ -9,10 +9,11 @@ export const verifyUserCredentialApi = async ({ username, password }) => {
     },
   );
 
-  const data = await response.json();
-  if (data.message === "登录成功") {
-    return data.data.token;
+  const respData = await response.json();
+  console.log(respData.message);
+  if (respData.message === "登陆成功") {
+    return respData.data.token;
   } else {
-    return;
+    return null;
   }
 };
