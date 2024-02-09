@@ -1,0 +1,16 @@
+.login_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(52, 58, 65, 0.6)
+  ), url("../../../public/login-background.webp");
+  background-size: cover;
+}
+
+.login_form {
+
+}
+

@@ -1,24 +1,24 @@
-
-import './App.css';
+import "./App.css";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import { useEffect, useState } from "react";
+import { useRoutes } from "react-router-dom";
+import { routes } from "./utilities/router";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const route = useRoutes(routes);
+
+  const [shouldHomeShow, setShouldHomeShow] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setShouldHomeShow(true);
+    } else {
+      setShouldHomeShow(false);
+    }
+  }, []);
+
+  return <div className="App">{route}</div>;
 }
 
 export default App;

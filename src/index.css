@@ -1,13 +1,72 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --font-family: Roboto, Tahoma, Geneva, Verdana, sans-serif;
+  --base-font-size: 16px;
+  --heading-font-size: 24px;
+  --paragraph-font-size: 14px;
+
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  --color-gray-100: #f4f3f1;
+  --color-gray-200: #dddbd8;
+  --color-gray-300: #ccc9c6;
+  --color-gray-400: #aeaba7;
+  --color-gray-500: #8a8784;
+  --color-gray-600: #656360;
+  --color-gray-700: #4b4a47;
+  --color-gray-800: #31302e;
+  --color-gray-900: #1f1d1b;
+
+  --color-red-100: #f9e3e3;
+  --color-red-200: #f4c3c2;
+  --color-red-300: #e78181;
+  --color-red-400: #e04b4b;
+  --color-red-500: #d92525;
+  --color-red-600: #c21f1f;
+  --color-red-700: #a81b1b;
+  --color-red-800: #8e1717;
+  --color-red-900: #741313;
+
+  --color-green-100: #e3f9e3;
+  --color-green-200: #c2f4c2;
+  --color-green-300: #81e781;
+  --color-green-400: #4be04b;
+  --color-green-500: #25d925;
+  --color-green-600: #1fc21f;
+  --color-green-700: #1ba81b;
+  --color-green-800: #178e17;
+  --color-green-900: #137413;
+
+  --color-blue-100: #e3f9f9;
+  --color-blue-200: #c2f4f4;
+  --color-blue-300: #81e7e7;
+  --color-blue-400: #4be0e0;
+  --color-blue-500: #25d9d9;
+  --color-blue-600: #1fc2c2;
+  --color-blue-700: #1ba8a8;
+  --color-blue-800: #178e8e;
+  --color-blue-900: #137474;
+
+  --color-yellow-100: #f9f9e3;
+  --color-yellow-200: #f4f4c2;
+  --color-yellow-300: #e7e781;
+  --color-yellow-400: #e0e04b;
+  --color-yellow-500: #d9d925;
+  --color-yellow-600: #c2c21f;
+  --color-yellow-700: #a8a81b;
+  --color-yellow-800: #8e8e17;
+  --color-yellow-900: #747413;
+
+  --animation-fast: 0.3s;
+  --animation-medium: 0.5s;
+  --animation-slow: 1s;
 }
