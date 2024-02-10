@@ -37,14 +37,14 @@ function LoginForm(props) {
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "请输入用户名！",
           },
         ]}
       >
         <Input
           prefix={<UserOutlined />}
           className={"login_input"}
-          placeholder={"Username"}
+          placeholder={"用户名"}
         />
       </Form.Item>
 
@@ -53,23 +53,23 @@ function LoginForm(props) {
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: "请输入密码！",
           },
         ]}
       >
         <Input.Password
           prefix={<LockOutlined />}
           className={"login_input"}
-          placeholder={"Password"}
+          placeholder={"密码"}
         />
       </Form.Item>
 
       <Form.Item name="remember" valuePropName="checked">
         <Checkbox className="remember_me" checked>
-          Remember me
+          记住我
         </Checkbox>
         <a className="login-form-forgot" href="">
-          Forgot password
+          忘记密码
         </a>
       </Form.Item>
 
