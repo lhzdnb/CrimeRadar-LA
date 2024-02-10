@@ -9,6 +9,7 @@ import LoginForm from "./LoginForm";
 import { Button, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Typography } from "antd";
+import Layout from "./Layout";
 const { Title } = Typography;
 
 function Login(props) {
@@ -28,22 +29,7 @@ function Login(props) {
       align={"center"}
       justify={"center"}
     >
-      <Flex
-        gap={"middle"}
-        justify={"space-between"}
-        align={"center"}
-        className={"nav-bar"}
-      >
-        <div>Logo</div>
-        <Flex gap={"middle"}>
-          <Button type={"link"} className={"link"} onClick={toRegister}>
-            注册
-          </Button>
-          <Button type={"link"} className={"link"} onClick={toAbout}>
-            关于我们
-          </Button>
-        </Flex>
-      </Flex>
+      <Layout />
       <h1 className={"title"}>CrimeRadar - LA</h1>
       <LoginForm />
     </Flex>

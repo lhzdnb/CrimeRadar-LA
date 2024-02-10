@@ -12,7 +12,7 @@
 
 .login_form {
   max-width: 30rem;
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
 }
 
 .login_input {
@@ -22,23 +22,24 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 .login_input::placeholder {
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
 }
 
 .remember_me {
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
   float: left;
 }
 
 .login-form-forgot {
   float: right;
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
 }
 
 .login_button {
   height: 2.8rem;
   width: 100%;
   border-radius: 2rem;
+  margin-bottom: 5px;
 }
 
 .nav-bar {
@@ -49,7 +50,7 @@
 }
 
 .link {
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
   font-size: 1rem;
 }
 
@@ -62,16 +63,22 @@
 }
 
 .register-button {
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
 }
 
-.nav-bar a:visited,
+a:visited,
 a:link {
-  color: var(--color-gray-100);
+  color: var(--color-red-100);
   padding: 0.5rem 1rem;
   border-radius: 10px;
 }
 
-.active {
+a:hover,
+a:active {
+  color: var(--color-red-300);
+}
+
+a.active {
   background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-red-300);
 }

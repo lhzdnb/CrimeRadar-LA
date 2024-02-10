@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Flex, Form, Input, message } from "antd";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-  LockOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { verifyUserCredentialApi } from "./loginApi";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import "./index.css";
+import { formItemLayout, tailFormItemLayout } from "../../utilities/formLayout";
 
 function LoginForm(props) {
   const [loading, setLoading] = useState(false);
@@ -83,9 +80,7 @@ function LoginForm(props) {
         >
           {loading ? "登录中..." : "登录"}
         </Button>
-        <Button type={"link"} className={"register-button"}>
-          现在注册
-        </Button>
+        <NavLink to={"/register"}>现在注册</NavLink>
       </Form.Item>
     </Form>
   );
