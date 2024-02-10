@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Flex, Form, Input, message } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { verifyUserCredentialApi } from "./loginApi";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./index.css";
-import { formItemLayout, tailFormItemLayout } from "../../utilities/formLayout";
 
 function LoginForm(props) {
   const [loading, setLoading] = useState(false);
@@ -62,9 +61,7 @@ function LoginForm(props) {
       </Form.Item>
 
       <Form.Item name="remember" valuePropName="checked">
-        <Checkbox className="remember_me" checked>
-          记住我
-        </Checkbox>
+        <Checkbox className="remember_me">记住我</Checkbox>
         <a className="login-form-forgot" href="">
           忘记密码
         </a>
