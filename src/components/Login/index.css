@@ -64,3 +64,14 @@
 .register-button {
   color: var(--color-gray-100);
 }
+
+.nav-bar a:visited,
+a:link {
+  color: var(--color-gray-100);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
