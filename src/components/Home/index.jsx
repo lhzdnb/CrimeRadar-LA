@@ -5,7 +5,11 @@ function Home(props) {
   const navigate = useNavigate();
   const [authed, setAuthed] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
 
   return <div>Home</div>;
 }
