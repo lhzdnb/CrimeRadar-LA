@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Button, Form, Input, notification, message } from "antd";
-import registerApi from "./registerApi";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+
+import registerApi from "./registerApi";
 import { formItemLayout, tailFormItemLayout } from "../../utilities/formLayout";
+import "./index.css";
 
 function RegisterForm(props) {
   const [fetching, setFetching] = useState(false);
   const [api, contextHolder] = notification.useNotification();
+  const navigate = useNavigate();
+
   async function handleRegister(values) {
     setFetching(true);
 
@@ -19,16 +25,15 @@ function RegisterForm(props) {
     setFetching(false);
 
     openNotification(resMessage, "success");
+    setTimeout(() => navigate("/login"), 3000);
   }
 
   function openNotification(message, type) {
     api[type]({
       message: message,
-      description: "Enjoy using this App!",
+      description: "将在三秒后跳转至登录页面",
     });
   }
-
-  function comparePassword() {}
 
   return (
     <div>
@@ -36,10 +41,9 @@ function RegisterForm(props) {
       <Form
         className="register_form"
         onFinish={handleRegister}
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 6 }}
         wrapperCol={{ span: 16 }}
         scrollToFirstError
-        {...formItemLayout}
       >
         <Form.Item
           name={"username"}

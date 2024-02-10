@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Layout from "../Login/Layout";
+
 import { Flex } from "antd";
+
+import Layout from "../Login/Layout";
 import RegisterForm from "./RegisterForm";
+import "./index.css";
 
 function RegisterPage(props) {
-  const navigate = useNavigate();
-
   return (
     <Flex
       className={"register_page"}
