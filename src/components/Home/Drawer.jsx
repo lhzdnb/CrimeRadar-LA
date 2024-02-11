@@ -13,6 +13,7 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import CrimeFilter from "./CrimeFilter";
+import "./index.css";
 
 function MyDrawer(props) {
   const [open, setOpen] = useState(false);
@@ -57,15 +58,27 @@ function MyDrawer(props) {
         open={open}
         size="middle"
       >
-        <Flex justify="center" align="center" vertical gap="small">
-          <Avatar size={48} icon={<UserOutlined />} />
-          <h3>{sessionStorage.getItem("username")}</h3>
-          <Button type="link" block>
-            用户设置
-          </Button>
+        <Flex
+          justify="space-between"
+          align="center"
+          vertical
+          gap="small"
+          className="drawer_container"
+        >
+          <div>
+            <Flex justify="center" align="center" vertical gap="large">
+              <Avatar size={48} icon={<UserOutlined />} />
+              <h3>{sessionStorage.getItem("username")}</h3>
+              <Button type="link" block>
+                用户设置
+              </Button>
+            </Flex>
 
-          <Divider orientation="left">筛选犯罪条件</Divider>
-          <CrimeFilter />
+            <div className="filter">
+              <Divider orientation="left">筛选犯罪条件</Divider>
+              <CrimeFilter />
+            </div>
+          </div>
 
           <Popconfirm
             title={"退出登录"}

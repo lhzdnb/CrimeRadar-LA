@@ -3,6 +3,7 @@ import { Form, Select, DatePicker, Button } from "antd";
 
 import { selectOptions } from "../../config/selectOptions";
 import dayjs from "dayjs";
+import fetchCrime from "../../utilities/fetchCrime";
 
 const { RangePicker } = DatePicker;
 
@@ -15,7 +16,8 @@ function CrimeFilter(props) {
     if (!values.timeRange) {
       values.timeRange = [threeDaysAgo, today];
     }
-    console.log(values);
+    const crimeData = await fetchCrime(values);
+    console.log(crimeData);
   }
 
   const rangeConfig = {

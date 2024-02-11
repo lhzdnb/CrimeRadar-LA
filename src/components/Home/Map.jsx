@@ -8,7 +8,7 @@ import { Spin } from "antd";
 import "./index.css";
 import { mapContainerStyle, mapOptions } from "../../config/mapConfig";
 
-function Map(props) {
+function Map({ crimeData }) {
   const [userLocation, setUserLocation] = useState({
     lat: 34.026494989680174,
     lng: -118.29970242365032,

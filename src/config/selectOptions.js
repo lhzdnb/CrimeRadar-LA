@@ -36,3 +36,15 @@ export const selectOptions = [
     label: "intimate partner - simple assault",
   },
 ];
+
+export const crimeMap = {
+  "VEHICLE - STOLEN": "510",
+  "BATTERY - SIMPLE ASSAULT": "624",
+  "THEFT OF IDENTITY": "354",
+  "BURGLARY FROM VEHICLE": "330",
+  BURGLARY: "310",
+  "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)": "740",
+  "ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT": "230",
+  "THEFT PLAIN - PETTY ($950 & UNDER)": "440",
+  "INTIMATE PARTNER - SIMPLE ASSAULT": "626",
+};
