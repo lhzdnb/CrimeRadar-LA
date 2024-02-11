@@ -16,7 +16,8 @@ function LoginForm(props) {
       return message.error("登录失败，请检查用户名和密码");
     }
     setLoading(false);
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("username", values.username);
     navigate("/");
   };
 
