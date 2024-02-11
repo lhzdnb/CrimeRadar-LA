@@ -1,12 +1,12 @@
-import { GoogleMap, LoadScript, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 import React, { useEffect, useState } from "react";
 import { GOOGLE_API_KEY } from "../../utilities/apiURL";
-import SpinIcon from "../SpinIcon";
 import fetchLocation from "../../utilities/getLocation";
 import { Spin } from "antd";
 
 import "./index.css";
+import { mapContainerStyle, mapOptions } from "../../utilities/mapConfig";
 
 function Map(props) {
   const [userLocation, setUserLocation] = useState({
@@ -27,16 +27,12 @@ function Map(props) {
     googleMapsApiKey: GOOGLE_API_KEY,
   });
 
-  const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw",
-  };
-
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
       center={userLocation}
       zoom={16}
+      options={mapOptions}
     ></GoogleMap>
   ) : (
     <Spin tip={"加载地图中..."}>
