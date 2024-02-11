@@ -5,7 +5,7 @@ import { Button, Form, Input, notification, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 import registerApi from "./registerApi";
-import { formItemLayout, tailFormItemLayout } from "../../utilities/formLayout";
+import { tailFormItemLayout } from "../../utilities/formLayout";
 import "./index.css";
 
 function RegisterForm(props) {

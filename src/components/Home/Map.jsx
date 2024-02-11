@@ -6,7 +6,7 @@ import fetchLocation from "../../utilities/getLocation";
 import { Spin } from "antd";
 
 import "./index.css";
-import { mapContainerStyle, mapOptions } from "../../utilities/mapConfig";
+import { mapContainerStyle, mapOptions } from "../../config/mapConfig";
 
 function Map(props) {
   const [userLocation, setUserLocation] = useState({
