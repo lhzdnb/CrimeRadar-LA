@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Texty from "rc-texty";
 import "./index.css";
 import TweenOne from "rc-tween-one";
 
 function Title() {
   const [show, setShow] = useState(true);
-
+  const [animation, setAnimation] = useState({});
   const geInterval = (e) => {
     switch (e.index) {
       case 0:
@@ -47,11 +47,36 @@ function Title() {
     return c;
   };
 
-  const onClick = () => {
-    setShow(false, () => {
-      setShow(true);
-    });
-  };
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const moveX = ((clientX - screenWidth / 2) / screenWidth) * 50;
+      const moveY = ((clientY - screenHeight / 2) / screenHeight) * 50;
+
+      setAnimation({
+        title: {
+          translateX: moveX,
+          translateY: moveY,
+        },
+        content: {
+          translateX: -moveX,
+          translateY: -moveY,
+        },
+      });
+    };
+
+    // 在 4 秒后开始监听鼠标移动
+    const timer = setTimeout(() => {
+      window.addEventListener("mousemove", handleMouseMove);
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <div className="combined-wrapper">
@@ -126,6 +151,10 @@ function Title() {
                   ease: "easeInOutQuint",
                 },
               ],
+              onMouseMove: null, // 清除原有的mousemove事件
+              style: {
+                transform: `translate(${animation.title?.translateX}px, ${animation.title?.translateY}px)`,
+              },
             }}
           >
             CrimeRadar - LA
@@ -146,6 +175,11 @@ function Title() {
             split={getSplit}
             delay={2200}
             interval={30}
+            componentProps={{
+              style: {
+                transform: `translate(${animation.content?.translateX}px, ${animation.content?.translateY}px)`,
+              },
+            }}
           >
             Ensure safety and avoid hazardous areas
           </Texty>
