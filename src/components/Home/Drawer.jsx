@@ -78,7 +78,10 @@ function MyDrawer({ handleData }) {
 
               <div className="filter">
                 <Divider orientation="left">筛选犯罪条件</Divider>
-                <CrimeFilter handleData={handleData} />
+                <CrimeFilter
+                  handleData={handleData}
+                  handleClose={closeDrawer}
+                />
               </div>
             </div>
 

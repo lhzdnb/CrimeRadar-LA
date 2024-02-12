@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Form, Select, DatePicker, Button } from "antd";
+import { Form, Select, DatePicker, Button, message } from "antd";
 
 import { selectOptions } from "../../config/selectOptions";
 import dayjs from "dayjs";
 import fetchCrime from "../../utilities/fetchCrime";
-import { json } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 
-function CrimeFilter({ handleData }) {
+function CrimeFilter({ handleData, handleClose }) {
   const today = dayjs();
   const threeDaysAgo = today.subtract(3, "day");
 
@@ -20,8 +19,10 @@ function CrimeFilter({ handleData }) {
     try {
       const crimeData = await fetchCrime(values);
       handleData(crimeData);
+      message.success(`成功查询到${crimeData.length}条犯罪记录`);
+      handleClose();
     } catch (e) {
-      throw json({ message: e.message, status: 500 });
+      message.error("查询失败，请稍后再试！");
     }
   }
 
