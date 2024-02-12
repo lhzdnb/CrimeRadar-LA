@@ -1,0 +1,76 @@
+.combined-wrapper {
+  margin-top: 2rem;
+  padding: 0;
+  height: 10rem;
+  position: relative;
+  width: 100%;
+  animation: moveUp 1s ease-in-out forwards;
+  animation-delay: 3s;
+}
+.combined-reload {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+.combined {
+  color: var(--color-red-300);
+  width: 400px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.combined-shape {
+  position: relative;
+}
+.combined-shape > * {
+  width: 50%;
+  height: 64px;
+  position: absolute;
+  overflow: hidden;
+}
+.combined-shape > * > * {
+  width: 100%;
+  height: 100%;
+  background: var(--color-red-300);
+}
+.combined-shape .shape-left {
+  left: 0;
+}
+.combined-shape .shape-right {
+  right: 0;
+}
+.combined .title {
+  font-size: 58px;
+  letter-spacing: 8px;
+  position: absolute;
+  width: 350px;
+  overflow: hidden;
+  font-family: "Protest Revolution", sans-serif;
+}
+.combined-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-red-100);
+  position: absolute;
+  top: 70px;
+}
+.combined .content {
+  color: var(--color-red-300);
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  top: 30px;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5rem);
+  }
+}

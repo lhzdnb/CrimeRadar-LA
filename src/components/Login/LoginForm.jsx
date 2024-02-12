@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, message, notification } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { verifyUserCredentialApi } from "./loginApi";
-import { json, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import QueueAnim from "rc-queue-anim"; // Import QueueAnim
 import "./index.css";
 
 function LoginForm(props) {
@@ -45,57 +46,73 @@ function LoginForm(props) {
           remember: true,
         }}
       >
-        <Form.Item
-          name={"username"}
-          rules={[
-            {
-              required: true,
-              message: "请输入用户名！",
-            },
-          ]}
+        <QueueAnim
+          type="bottom"
+          component="div"
+          className="form-queue-anim"
+          delay={4000}
+          duration={3000}
         >
-          <Input
-            prefix={<UserOutlined />}
-            className={"login_input"}
-            placeholder={"用户名"}
-          />
-        </Form.Item>
+          <div key="a">
+            <Form.Item
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: "请输入用户名！",
+                },
+              ]}
+            >
+              <Input
+                prefix={<UserOutlined />}
+                className={"login_input"}
+                placeholder={"用户名"}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item
-          name={"password"}
-          rules={[
-            {
-              required: true,
-              message: "请输入密码！",
-            },
-          ]}
-        >
-          <Input.Password
-            prefix={<LockOutlined />}
-            className={"login_input"}
-            placeholder={"密码"}
-          />
-        </Form.Item>
+          <div key="b">
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "请输入密码！",
+                },
+              ]}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                className={"login_input"}
+                placeholder={"密码"}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox className="remember_me">记住我</Checkbox>
-          <a className="login-form-forgot" href="">
-            忘记密码
-          </a>
-        </Form.Item>
+          <div key="c">
+            <Form.Item name="remember" valuePropName="checked">
+              <Checkbox className="remember_me">记住我</Checkbox>
+              <a className="login-form-forgot" href="">
+                忘记密码
+              </a>
+            </Form.Item>
+          </div>
 
-        <Form.Item>
-          <Button
-            htmlType={"submit"}
-            type="primary"
-            danger={true}
-            loading={loading}
-            className={"login_button"}
-          >
-            {loading ? "登录中..." : "登录"}
-          </Button>
-          <NavLink to={"/register"}>现在注册</NavLink>
-        </Form.Item>
+          <div key="d">
+            <Form.Item>
+              <Button
+                htmlType={"submit"}
+                type="primary"
+                danger={true}
+                loading={loading}
+                className={"login_button"}
+              >
+                {loading ? "登录中..." : "登录"}
+              </Button>
+              <NavLink to={"/register"}>现在注册</NavLink>
+            </Form.Item>
+          </div>
+        </QueueAnim>
       </Form>
     </>
   );

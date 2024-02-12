@@ -6,11 +6,10 @@ import React from "react";
 // 自己写的
 import "./index.css";
 import LoginForm from "./LoginForm";
-import { Button, Flex } from "antd";
+import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Typography } from "antd";
 import Layout from "./Layout";
-const { Title } = Typography;
+import Title from "../Title";
 
 function Login(props) {
   const navigate = useNavigate();
@@ -22,15 +21,11 @@ function Login(props) {
   }
 
   return (
-    <Flex
-      className={"login_page"}
-      vertical
-      gap={"large"}
-      align={"center"}
-      justify={"center"}
-    >
+    <Flex className={"login_page"} vertical align={"center"} justify={"center"}>
       <Layout />
-      <h1 className={"title"}>CrimeRadar - LA</h1>
+
+      <Title />
+
       <LoginForm />
     </Flex>
   );

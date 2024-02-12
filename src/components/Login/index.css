@@ -11,6 +11,7 @@
 }
 
 .login_form {
+  min-height: 20rem; /* Adjust based on your needs */
   max-width: 30rem;
   color: var(--color-red-100);
 }
