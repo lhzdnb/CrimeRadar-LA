@@ -16,12 +16,24 @@ import m4 from "../../cluster-image/m4.png";
 import m5 from "../../cluster-image/m5.png";
 
 import "./index.css";
+import CrimeDetail from "./crimeDetail";
 
 function Map({ crimeData }) {
   const [userLocation, setUserLocation] = useState({
     lat: 34.026494989680174,
     lng: -118.29970242365032,
   });
+
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState();
+  function showDrawer(index) {
+    setIndex(index);
+    setOpen(true);
+  }
+
+  function onClose() {
+    setOpen(false);
+  }
 
   useEffect(() => {
     const fetchUserLocation = async () => {
@@ -75,41 +87,56 @@ function Map({ crimeData }) {
     ],
   };
 
-  function showCrimeDetail(index) {}
-
   console.log(crimeData);
 
   function renderMap() {
     return (
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={userLocation}
-        zoom={16}
-        options={mapOptions}
-      >
-        <Marker
-          position={userLocation}
-          animation={window.google.maps.Animation.DROP}
-        />
-        {crimeData && (
-          <MarkerClusterer options={clustererOptions}>
-            {(clusterer) =>
-              crimeData.map((crime, index) => (
-                <Marker
-                  animation={window.google.maps.Animation.DROP}
-                  position={{ lat: Number(crime.lat), lng: Number(crime.lon) }}
-                  key={index}
-                  clusterer={clusterer}
-                  icon={{
-                    url: "https://static.thenounproject.com/png/3192412-200.png",
-                    scaledSize: new window.google.maps.Size(32, 32), // 自定义图标大小
-                  }}
-                ></Marker>
-              ))
-            }
-          </MarkerClusterer>
-        )}
-      </GoogleMap>
+      <>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={userLocation}
+          zoom={16}
+          options={mapOptions}
+        >
+          <Marker
+            position={userLocation}
+            animation={window.google.maps.Animation.DROP}
+            icon={{
+              url: "https://cdn0.iconfinder.com/data/icons/social-messaging-productivity-6/128/person-location-512.png",
+              scaledSize: new window.google.maps.Size(48, 48), // 自定义图标大小
+            }}
+          />
+          {crimeData && (
+            <>
+              <MarkerClusterer options={clustererOptions}>
+                {(clusterer) =>
+                  crimeData.map((crime, index) => (
+                    <Marker
+                      animation={window.google.maps.Animation.DROP}
+                      position={{
+                        lat: Number(crime.lat),
+                        lng: Number(crime.lon),
+                      }}
+                      key={index}
+                      clusterer={clusterer}
+                      icon={{
+                        url: "https://static.thenounproject.com/png/3192412-200.png",
+                        scaledSize: new window.google.maps.Size(32, 32), // 自定义图标大小
+                      }}
+                      onClick={() => showDrawer(index)}
+                    ></Marker>
+                  ))
+                }
+              </MarkerClusterer>
+              <CrimeDetail
+                crime={crimeData[index]}
+                onClose={onClose}
+                open={open}
+              />
+            </>
+          )}
+        </GoogleMap>
+      </>
     );
   }
 
