@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Form, Input, notification, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import QueueAnim from "rc-queue-anim"; // Import QueueAnim
 
 import registerApi from "./registerApi";
 import { tailFormItemLayout } from "../../utilities/formLayout";
@@ -42,7 +43,7 @@ function RegisterForm(props) {
   }
 
   return (
-    <>
+    <div className="register_form_container">
       {contextHolder}
       <Form
         className="register_form"
@@ -51,77 +52,93 @@ function RegisterForm(props) {
         wrapperCol={{ span: 16 }}
         scrollToFirstError
       >
-        <Form.Item
-          name={"username"}
-          rules={[{ required: true, message: "请输入用户名！" }]}
-          label={"用户名"}
+        <QueueAnim
+          type="bottom"
+          component="div"
+          className="form-queue-anim"
+          delay={4000}
+          duration={3000}
         >
-          <Input
-            prefix={<UserOutlined />}
-            className={"login_input"}
-            placeholder={"用户名"}
-          />
-        </Form.Item>
+          <div key="a">
+            <Form.Item
+              name="username"
+              rules={[{ required: true, message: "请输入用户名！" }]}
+              label={"用户名"}
+            >
+              <Input
+                prefix={<UserOutlined />}
+                className={"login_input"}
+                placeholder={"用户名"}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item
-          name={"password"}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "请输入密码！",
-            },
-          ]}
-          label={"密码："}
-        >
-          <Input.Password
-            prefix={<LockOutlined />}
-            className={"login_input"}
-            placeholder={"密码"}
-          />
-        </Form.Item>
+          <div key="b">
+            <Form.Item
+              name={"password"}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "请输入密码！",
+                },
+              ]}
+              label={"密码："}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                className={"login_input"}
+                placeholder={"密码"}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item
-          name={"confirmPassword"}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "两次输入的密码不匹配，请重新输入！",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("两次输入的密码不匹配，请重新输入！"),
-                );
-              },
-            }),
-          ]}
-          label={"确认密码"}
-        >
-          <Input.Password
-            prefix={<LockOutlined />}
-            className={"login_input"}
-            placeholder={"再次确认密码"}
-          />
-        </Form.Item>
+          <div key="c">
+            <Form.Item
+              name={"confirmPassword"}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "两次输入的密码不匹配，请重新输入！",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("两次输入的密码不匹配，请重新输入！"),
+                    );
+                  },
+                }),
+              ]}
+              label={"确认密码"}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                className={"login_input"}
+                placeholder={"再次确认密码"}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button
-            type="primary"
-            danger={true}
-            loading={fetching}
-            className={"submit_button"}
-            htmlType={"submit"}
-          >
-            {fetching ? "注册中..." : "注册"}
-          </Button>
-        </Form.Item>
+          <div key="d">
+            <Form.Item {...tailFormItemLayout}>
+              <Button
+                type="primary"
+                danger={true}
+                loading={fetching}
+                className={"submit_button"}
+                htmlType={"submit"}
+              >
+                {fetching ? "注册中..." : "注册"}
+              </Button>
+            </Form.Item>
+          </div>
+        </QueueAnim>
       </Form>
-    </>
+    </div>
   );
 }
 

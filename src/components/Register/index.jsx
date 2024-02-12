@@ -5,6 +5,7 @@ import { Flex } from "antd";
 import Layout from "../Login/Layout";
 import RegisterForm from "./RegisterForm";
 import "./index.css";
+import Title from "../Title";
 
 function RegisterPage(props) {
   return (
@@ -16,7 +17,7 @@ function RegisterPage(props) {
       justify={"center"}
     >
       <Layout />
-      <h1 className={"title"}>CrimeRadar - LA</h1>
+      <Title />
       <RegisterForm />
     </Flex>
   );

@@ -9,10 +9,15 @@
 }
 
 .register_form {
+  min-height: 20rem;
   color: var(--color-red-100);
   max-width: 30rem;
 }
 
 .register_form label {
   color: var(--color-red-500) !important;
+}
+
+.register_form_container {
+  margin-right: 4rem;
 }
