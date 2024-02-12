@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import CrimeFilter from "./CrimeFilter";
 import "./index.css";
 
-function MyDrawer(props) {
+function MyDrawer({ handleData }) {
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
@@ -52,48 +52,51 @@ function MyDrawer(props) {
         onClick={showDrawer}
         tooltip={<div>菜单栏</div>}
       />
-      <Drawer
-        title="CrimeRadar - LA"
-        onClose={closeDrawer}
-        open={open}
-        size="middle"
-      >
-        <Flex
-          justify="space-between"
-          align="center"
-          vertical
-          gap="small"
-          className="drawer_container"
+
+      <div className="outer_container">
+        <Drawer
+          title="CrimeRadar - LA"
+          onClose={closeDrawer}
+          open={open}
+          size="middle"
         >
-          <div>
-            <Flex justify="center" align="center" vertical gap="large">
-              <Avatar size={48} icon={<UserOutlined />} />
-              <h3>{sessionStorage.getItem("username")}</h3>
-              <Button type="link" block>
-                用户设置
-              </Button>
-            </Flex>
-
-            <div className="filter">
-              <Divider orientation="left">筛选犯罪条件</Divider>
-              <CrimeFilter />
-            </div>
-          </div>
-
-          <Popconfirm
-            title={"退出登录"}
-            description={"是否退出登录？"}
-            onConfirm={confirm}
-            onCancel={cancel}
-            okText={"是"}
-            cancelText={"否"}
+          <Flex
+            justify="space-between"
+            align="center"
+            vertical
+            gap="small"
+            className="drawer_container"
           >
-            <Button danger block>
-              退出登录
-            </Button>
-          </Popconfirm>
-        </Flex>
-      </Drawer>
+            <div>
+              <Flex justify="center" align="center" vertical gap="large">
+                <Avatar size={48} icon={<UserOutlined />} />
+                <h3>{sessionStorage.getItem("username")}</h3>
+                <Button type="link" block>
+                  用户设置
+                </Button>
+              </Flex>
+
+              <div className="filter">
+                <Divider orientation="left">筛选犯罪条件</Divider>
+                <CrimeFilter handleData={handleData} />
+              </div>
+            </div>
+
+            <Popconfirm
+              title={"退出登录"}
+              description={"是否退出登录？"}
+              onConfirm={confirm}
+              onCancel={cancel}
+              okText={"是"}
+              cancelText={"否"}
+            >
+              <Button danger block>
+                退出登录
+              </Button>
+            </Popconfirm>
+          </Flex>
+        </Drawer>
+      </div>
     </>
   );
 }

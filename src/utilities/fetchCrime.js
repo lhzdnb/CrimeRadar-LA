@@ -1,6 +1,7 @@
 import { crimeApiURL } from "./apiURL";
 import dayjs from "dayjs";
 import { crimeMap } from "../config/selectOptions";
+import { json } from "react-router-dom";
 
 async function fetchCrime({ timeRange, type }) {
   const begin = dayjs(timeRange[0]).toJSON().slice(0, -1);
@@ -14,6 +15,9 @@ async function fetchCrime({ timeRange, type }) {
   const requestURL = `${crimeApiURL}?${whereClause}`;
 
   const response = await fetch(requestURL);
+  if (!response.ok) {
+    throw new Error("获取犯罪信息失败，请稍后再试！");
+  }
   return await response.json();
 }
 

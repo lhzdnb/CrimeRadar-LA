@@ -16,27 +16,33 @@ function RegisterForm(props) {
   async function handleRegister(values) {
     setFetching(true);
 
-    const resMessage = await registerApi(values);
+    try {
+      const resMessage = await registerApi(values);
 
-    if (resMessage === "用户名已被注册") {
+      if (resMessage === "用户名已被注册") {
+        setFetching(false);
+        return message.error("该用户名已被注册，请更换一个");
+      }
       setFetching(false);
-      return message.error("该用户名已被注册，请更换一个");
-    }
-    setFetching(false);
 
-    openNotification(resMessage, "success");
-    setTimeout(() => navigate("/login"), 3000);
+      openNotification(resMessage, "将在三秒后跳转至登录页面", "success");
+      setTimeout(() => navigate("/login"), 3000);
+    } catch (e) {
+      setFetching(false);
+      openNotification("发送注册请求失败，请稍后再试。", "", "error");
+    }
   }
 
-  function openNotification(message, type) {
+  function openNotification(message, description, type) {
     api[type]({
       message: message,
-      description: "将在三秒后跳转至登录页面",
+      description,
+      placement: "top",
     });
   }
 
   return (
-    <div>
+    <>
       {contextHolder}
       <Form
         className="register_form"
@@ -115,7 +121,7 @@ function RegisterForm(props) {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </>
   );
 }
 

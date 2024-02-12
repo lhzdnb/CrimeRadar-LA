@@ -10,7 +10,7 @@ export const verifyUserCredentialApi = async ({ username, password }) => {
   );
 
   if (!response.ok) {
-    throw Error("发送登录请求失败，请稍后再试。");
+    throw new Error("发送登录请求失败，请稍后再试。");
   }
 
   const respData = await response.json();

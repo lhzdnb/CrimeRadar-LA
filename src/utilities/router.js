@@ -19,4 +19,7 @@ export const routes = [
     element: <RegisterPage />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/setting",
+  },
 ];

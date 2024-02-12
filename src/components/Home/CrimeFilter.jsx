@@ -4,10 +4,11 @@ import { Form, Select, DatePicker, Button } from "antd";
 import { selectOptions } from "../../config/selectOptions";
 import dayjs from "dayjs";
 import fetchCrime from "../../utilities/fetchCrime";
+import { json } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 
-function CrimeFilter(props) {
+function CrimeFilter({ handleData }) {
   const today = dayjs();
   const threeDaysAgo = today.subtract(3, "day");
 
@@ -16,8 +17,12 @@ function CrimeFilter(props) {
     if (!values.timeRange) {
       values.timeRange = [threeDaysAgo, today];
     }
-    const crimeData = await fetchCrime(values);
-    console.log(crimeData);
+    try {
+      const crimeData = await fetchCrime(values);
+      handleData(crimeData);
+    } catch (e) {
+      throw json({ message: e.message, status: 500 });
+    }
   }
 
   const rangeConfig = {

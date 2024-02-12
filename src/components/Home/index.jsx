@@ -6,6 +6,11 @@ import Drawer from "./Drawer";
 import MyDrawer from "./Drawer";
 function Home(props) {
   const navigate = useNavigate();
+  const [crimeData, setCrimeData] = useState(null);
+
+  function getCrimeData(data) {
+    setCrimeData(data);
+  }
 
   useEffect(() => {
     if (!sessionStorage.getItem("token")) {
@@ -15,8 +20,8 @@ function Home(props) {
 
   return (
     <div>
-      <Map></Map>
-      <MyDrawer />
+      <Map crimeData={crimeData}></Map>
+      <MyDrawer handleData={getCrimeData} />
     </div>
   );
 }

@@ -13,6 +13,6 @@
   max-width: 30rem;
 }
 
-label {
-  color: var(--color-red-100) !important;
+.register_form label {
+  color: var(--color-red-500) !important;
 }
