@@ -2,6 +2,7 @@ import "./App.css";
 import { useRoutes } from "react-router-dom";
 import { routes } from "./utilities/router";
 import { ConfigProvider } from "antd";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 
 function App() {
   const route = useRoutes(routes);
@@ -47,7 +48,9 @@ function App() {
         },
       }}
     >
-      <div className="App">{route}</div>
+      <HappyProvider>
+        <div className="App">{route}</div>
+      </HappyProvider>
     </ConfigProvider>
   );
 }
