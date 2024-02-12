@@ -27,6 +27,10 @@ function MyDrawer({ handleData }) {
     setOpen(false);
   }
 
+  function navigateToSetting() {
+    navigate("/setting");
+  }
+
   function confirm() {
     api["success"]({
       message: "成功退出登录",
@@ -48,7 +52,7 @@ function MyDrawer({ handleData }) {
       <FloatButton
         icon={<UserOutlined />}
         type="primary"
-        style={{ right: 94, top: 20 }}
+        style={{ right: 94, top: 24 }}
         onClick={showDrawer}
         tooltip={<div>菜单栏</div>}
       />
@@ -71,7 +75,7 @@ function MyDrawer({ handleData }) {
               <Flex justify="center" align="center" vertical gap="large">
                 <Avatar size={48} icon={<UserOutlined />} />
                 <h3>{sessionStorage.getItem("username")}</h3>
-                <Button type="link" block>
+                <Button type="link" block onClick={navigateToSetting}>
                   用户设置
                 </Button>
               </Flex>

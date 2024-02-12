@@ -11,7 +11,7 @@ function CrimeDetail({ open, onClose, crime }) {
     ? [
         {
           key: "1",
-          label: "犯罪描述",
+          label: "案件描述",
           children: crime.crm_cd_desc || "无信息",
         },
         {
