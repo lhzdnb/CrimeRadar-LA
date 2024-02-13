@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import RegisterPage from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
+import Settings from "./components/Settings";
 
 function App() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function App() {
             colorTextHeading: "rgb(219, 228, 255)",
           },
           Button: {
-            defaultColor: "rgb(255, 241, 240)",
+            defaultColor: "#5c0011",
           },
           Input: {
             activeBg: "rgb(255, 241, 240)",
@@ -41,7 +42,7 @@ function App() {
             cellHoverBg: "rgb(255, 241, 240)",
           },
           Form: {
-            labelColor: "rgb(92, 0, 17)",
+            labelColor: "rgb(222,156,163)",
           },
           Message: {
             contentBg: "rgb(255, 204, 199)",
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
             </div>

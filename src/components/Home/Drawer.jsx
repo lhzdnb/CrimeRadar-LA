@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -14,11 +14,25 @@ import {
 import { useNavigate } from "react-router-dom";
 import CrimeFilter from "./CrimeFilter";
 import "./index.css";
+import fetchAvatarImage from "../../utilities/fetchAvatar";
+import { accountURL } from "../../utilities/apiURL";
 
 function MyDrawer({ handleData }) {
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState(null);
+
+  useEffect(() => {
+    async function getAvatar() {
+      const img = await fetchAvatarImage();
+      console.log(img);
+      setAvatar(accountURL + "/avatar/" + img);
+    }
+
+    getAvatar();
+  }, []);
+
   function showDrawer() {
     setOpen(true);
   }
@@ -28,7 +42,8 @@ function MyDrawer({ handleData }) {
   }
 
   function navigateToSetting() {
-    navigate("/setting");
+    setOpen(false);
+    navigate("/settings");
   }
 
   function confirm() {
@@ -73,7 +88,11 @@ function MyDrawer({ handleData }) {
           >
             <div>
               <Flex justify="center" align="center" vertical gap="large">
-                <Avatar size={48} icon={<UserOutlined />} />
+                {avatar ? (
+                  <Avatar size={48} src={avatar} />
+                ) : (
+                  <Avatar size={48} icon={<UserOutlined />} />
+                )}
                 <h3>{sessionStorage.getItem("username")}</h3>
                 <Button type="link" block onClick={navigateToSetting}>
                   用户设置
