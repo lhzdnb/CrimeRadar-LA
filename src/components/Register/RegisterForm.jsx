@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Form, Input, notification, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import QueueAnim from "rc-queue-anim"; // Import QueueAnim
+import QueueAnim from "rc-queue-anim";
 
 import registerApi from "./registerApi";
 import { tailFormItemLayout } from "../../utilities/formLayout";

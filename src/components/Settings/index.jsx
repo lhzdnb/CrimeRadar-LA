@@ -13,7 +13,6 @@ function Settings(props) {
       align={"center"}
       justify={"center"}
     >
-      <Title />
       <SettingsForm />
     </Flex>
   );
