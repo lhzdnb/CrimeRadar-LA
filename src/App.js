@@ -56,7 +56,7 @@ function App() {
       }}
     >
       <HappyProvider>
-        <TransitionGroup component={null}>
+        <TransitionGroup className="transition-group">
           <CSSTransition
             key={location.key}
             timeout={500}
@@ -69,12 +69,6 @@ function App() {
                 location.pathname === "/register"
                   ? "forward-enter-active"
                   : "back-enter-active",
-              exit:
-                location.pathname === "/login" ? "back-exit" : "forward-exit",
-              exitActive:
-                location.pathname === "/login"
-                  ? "back-exit-active"
-                  : "forward-exit-active",
             }}
             nodeRef={nodeRef}
           >
