@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Button, Flex } from "antd";
 import "./index.css";
-
+import logo from "../../logo-nobg.png";
 function Layout(props) {
   return (
     <>
@@ -12,7 +12,7 @@ function Layout(props) {
         align={"center"}
         className={"nav-bar"}
       >
-        <div>Logo</div>
+        <img src={logo} alt="Logo Image" className="logo" />
         <Flex gap={"middle"}>
           <NavLink
             to={"/login"}

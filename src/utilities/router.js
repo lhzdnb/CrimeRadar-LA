@@ -20,6 +20,6 @@ export const routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/setting",
+    path: "/settings",
   },
 ];

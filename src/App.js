@@ -1,11 +1,18 @@
 import "./App.css";
-import { useRoutes } from "react-router-dom";
-import { routes } from "./utilities/router";
+import { Route, Routes, useLocation, useRoutes } from "react-router-dom";
+
 import { ConfigProvider } from "antd";
 import { HappyProvider } from "@ant-design/happy-work-theme";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import React from "react";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import RegisterPage from "./components/Register";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
-  const route = useRoutes(routes);
+  const location = useLocation();
+  const nodeRef = React.useRef(null);
 
   return (
     <ConfigProvider
@@ -18,7 +25,7 @@ function App() {
         },
         components: {
           Notification: {
-            colorBgElevated: "rgb(168, 7, 26)",
+            colorBgElevated: "rgb(197,53,70)",
             colorText: "rgb(255, 241, 240)",
             colorTextHeading: "rgb(219, 228, 255)",
           },
@@ -49,7 +56,38 @@ function App() {
       }}
     >
       <HappyProvider>
-        <div className="App">{route}</div>
+        <TransitionGroup component={null}>
+          <CSSTransition
+            key={location.key}
+            timeout={500}
+            classNames={{
+              enter:
+                location.pathname === "/register"
+                  ? "forward-enter"
+                  : "back-enter",
+              enterActive:
+                location.pathname === "/register"
+                  ? "forward-enter-active"
+                  : "back-enter-active",
+              exit:
+                location.pathname === "/login" ? "back-exit" : "forward-exit",
+              exitActive:
+                location.pathname === "/login"
+                  ? "back-exit-active"
+                  : "forward-exit-active",
+            }}
+            nodeRef={nodeRef}
+          >
+            <div ref={nodeRef}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Routes>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
       </HappyProvider>
     </ConfigProvider>
   );
