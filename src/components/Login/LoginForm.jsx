@@ -5,11 +5,16 @@ import { verifyUserCredentialApi } from "./loginApi";
 import { NavLink, useNavigate } from "react-router-dom";
 import QueueAnim from "rc-queue-anim"; // Import QueueAnim
 import "./index.css";
+import { userActions } from "../../store/userStatus";
+import { useDispatch, useSelector } from "react-redux";
 
-function LoginForm(props) {
+function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const remember = useSelector((state) => state.remember);
+  console.log(remember);
 
   const verifyCredentials = async (values) => {
     setLoading(true);
@@ -20,8 +25,15 @@ function LoginForm(props) {
         return message.error("登录失败，请检查用户名和密码");
       }
       setLoading(false);
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("username", values.username);
+      console.log(remember);
+      if (!remember) {
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("username", values.username);
+      } else {
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", values.username);
+      }
+      console.log("navigate to home");
       navigate("/");
     } catch (e) {
       openNotification("发送登录请求失败，请稍后再试。");
@@ -34,6 +46,11 @@ function LoginForm(props) {
       message,
       placement: "top",
     });
+  }
+
+  function onChange(e) {
+    console.log(e.target.checked);
+    dispatch(userActions.setRemember({ status: e.target.checked }));
   }
 
   return (
@@ -91,7 +108,9 @@ function LoginForm(props) {
 
           <div key="c">
             <Form.Item name="remember" valuePropName="checked">
-              <Checkbox className="remember_me">记住我</Checkbox>
+              <Checkbox className="remember_me" onChange={onChange}>
+                记住我
+              </Checkbox>
               <a className="login-form-forgot" href="">
                 忘记密码
               </a>

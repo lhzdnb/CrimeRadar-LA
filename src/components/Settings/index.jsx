@@ -3,7 +3,6 @@ import { Flex } from "antd";
 import "./index.css";
 
 import SettingsForm from "./SettingsForm";
-import Title from "../Title";
 
 function Settings(props) {
   return (

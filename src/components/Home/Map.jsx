@@ -87,8 +87,6 @@ function Map({ crimeData }) {
     ],
   };
 
-  console.log(crimeData);
-
   function renderMap() {
     return (
       <>

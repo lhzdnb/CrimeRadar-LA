@@ -1,7 +1,6 @@
 import { crimeApiURL } from "./apiURL";
 import dayjs from "dayjs";
 import { crimeMap } from "../config/selectOptions";
-import { json } from "react-router-dom";
 
 async function fetchCrime({ timeRange, type }) {
   const begin = dayjs(timeRange[0]).toJSON().slice(0, -1);

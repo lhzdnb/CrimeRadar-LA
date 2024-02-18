@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import RegisterPage from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
 import Settings from "./components/Settings";
+import AboutUsPage from "./components/About";
 
 function App() {
   const location = useLocation();
@@ -79,6 +80,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/about" element={<AboutUsPage />} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
             </div>

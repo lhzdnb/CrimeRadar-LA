@@ -3,13 +3,17 @@ import { Upload, Button, message, Image, Avatar, Space } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import fetchAvatarImage from "../../utilities/fetchAvatar";
 import { accountURL } from "../../utilities/apiURL";
+import { useSelector } from "react-redux";
 
 const CustomUpload = () => {
   const [avatarSrc, setAvatarSrc] = useState("");
-  const username = sessionStorage.getItem("username");
+  const remember = useSelector((state) => state.remember);
+  const username = remember
+    ? localStorage.getItem("username")
+    : sessionStorage.getItem("username");
 
   async function getAvatar() {
-    const data = await fetchAvatarImage();
+    const data = await fetchAvatarImage(username);
     setAvatarSrc(accountURL + "/avatar/" + data);
   }
 
@@ -55,10 +59,6 @@ const CustomUpload = () => {
       <Upload customRequest={handleUpload} showUploadList={false}>
         <Button icon={<UploadOutlined />}>点击上传图片</Button>
       </Upload>
-
-      {/*<Button onClick={getAvatar}>更新头像</Button>*/}
-
-      {/*<Image src={avatarSrc} preview={false}></Image>*/}
     </>
   );
 };

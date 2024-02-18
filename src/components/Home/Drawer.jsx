@@ -16,18 +16,28 @@ import CrimeFilter from "./CrimeFilter";
 import "./index.css";
 import fetchAvatarImage from "../../utilities/fetchAvatar";
 import { accountURL } from "../../utilities/apiURL";
+import { useSelector } from "react-redux";
 
 function MyDrawer({ handleData }) {
   const [open, setOpen] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState(null);
+  const remember = useSelector((state) => state.remember);
+  const username = remember
+    ? localStorage.getItem("username")
+    : sessionStorage.getItem("username");
 
   useEffect(() => {
     async function getAvatar() {
-      const img = await fetchAvatarImage();
-      console.log(img);
-      setAvatar(accountURL + "/avatar/" + img);
+      if (username) {
+        try {
+          const img = await fetchAvatarImage(username);
+          setAvatar(accountURL + "/avatar/" + img);
+        } catch (e) {
+          message.error("获取用户头像失败，请稍后再试");
+        }
+      }
     }
 
     getAvatar();
@@ -51,8 +61,10 @@ function MyDrawer({ handleData }) {
       message: "成功退出登录",
       description: "将在三秒后返回登陆页面",
     });
+    setOpen(false);
     setTimeout(() => {
       sessionStorage.clear();
+      localStorage.clear();
       navigate("/login");
     }, 3000);
   }
@@ -93,7 +105,7 @@ function MyDrawer({ handleData }) {
                 ) : (
                   <Avatar size={48} icon={<UserOutlined />} />
                 )}
-                <h3>{sessionStorage.getItem("username")}</h3>
+                <h3>{username}</h3>
                 <Button type="link" block onClick={navigateToSetting}>
                   用户设置
                 </Button>

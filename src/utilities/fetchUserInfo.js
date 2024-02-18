@@ -1,8 +1,7 @@
 import { accountURL } from "./apiURL";
 import axios from "axios";
 
-async function fetchUserInfo() {
-  const username = sessionStorage.getItem("username");
+async function fetchUserInfo(username) {
   const url = accountURL + `/profile/?username=${username}`;
   const {
     data: { data },
