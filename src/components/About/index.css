@@ -1,3 +1,10 @@
+.about_page {
+  background-image: linear-gradient(
+    rgba(255, 81, 47, 0.6),
+    rgba(221, 36, 118, 0.6)
+  );
+}
+
 .about-us-content {
   display: flex;
   justify-content: center;

@@ -13,13 +13,13 @@ import Title from "../Title";
 
 function Login() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
-  //     message
-  //       .success("用户已经登录，将跳转至地图页面！")
-  //       .then((r) => navigate("/"));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
+      message
+        .success("用户已经登录，将跳转至地图页面！")
+        .then(() => navigate("/"));
+    }
+  }, []);
 
   return (
     <Flex className={"login_page"} vertical align={"center"} justify={"center"}>

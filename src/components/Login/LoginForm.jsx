@@ -13,9 +13,15 @@ function LoginForm() {
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  if (!localStorage.getItem("remember")) {
+    localStorage.setItem("remember", false);
+  }
   const remember = useSelector((state) => state.remember);
-  console.log(remember);
-
+  dispatch(
+    userActions.setRemember({
+      status: JSON.parse(localStorage.getItem("remember")),
+    }),
+  );
   const verifyCredentials = async (values) => {
     setLoading(true);
     try {
@@ -50,6 +56,7 @@ function LoginForm() {
 
   function onChange(e) {
     console.log(e.target.checked);
+    localStorage.setItem("remember", e.target.checked);
     dispatch(userActions.setRemember({ status: e.target.checked }));
   }
 
@@ -108,7 +115,11 @@ function LoginForm() {
 
           <div key="c">
             <Form.Item name="remember" valuePropName="checked">
-              <Checkbox className="remember_me" onChange={onChange}>
+              <Checkbox
+                className="remember_me"
+                onChange={onChange}
+                checked={remember}
+              >
                 记住我
               </Checkbox>
               <a className="login-form-forgot" href="">

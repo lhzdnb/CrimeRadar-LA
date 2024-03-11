@@ -12,9 +12,12 @@ function Home(props) {
     setCrimeData(data);
   }
 
+  console.log(remember);
   const token = remember
     ? localStorage.getItem("token")
     : sessionStorage.getItem("token");
+
+  console.log(token);
 
   useEffect(() => {
     if (!token) {
